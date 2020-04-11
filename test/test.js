@@ -71,6 +71,14 @@ describe( 'Tests', ( done ) =>
         assert.deepStrictEqual( QS.parse('foo+bar=+'), { 'foo bar': ' ' });
     });
 
+    it('should stringify query', function()
+	{
+        let querystring = QS.stringify({ bar: true, foo: { foo: false, bar: 'foobar' }, arr: [ 'foo', { foo: 'bar' }, null, 321, undefined, 123.45, undefined ]});
+
+        assert.deepStrictEqual( querystring, 'bar=1&foo[foo]=0&foo[bar]=foobar&arr[0]=foo&arr[1][foo]=bar&arr[2]&arr[3]=321&arr[5]=123.45' );
+        assert.deepStrictEqual( QS.parse( querystring ), { bar: '1', foo: { foo: '0', bar: 'foobar' }, arr: [ 'foo', { foo: 'bar' }, null, '321', , '123.45' ]});
+    });
+    
     it('should parse cookies', function()
 	{
         assert.deepStrictEqual( QS.parseCookies(''), {});
