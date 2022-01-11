@@ -1,7 +1,7 @@
 {
   "name": "@liqd-js/querystring",
   "description": "Querystring class",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "radixxko",
   "license": "MIT",
   "main": "lib/querystring.js",

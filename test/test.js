@@ -53,6 +53,7 @@ describe( 'Tests', ( done ) =>
         assert.deepStrictEqual( QS.parse('foo[bar][1]=a&foo[bar][0]=b'), { foo: { bar: [ 'b', 'a' ] }});
         assert.deepStrictEqual( QS.parse('foo[bar][0]=a&foo[bar]=b'), { foo: { bar: [ 'a', 'b' ]}});
         assert.deepStrictEqual( QS.parse('foo[bar][foo]=a&foo[bar]=b'), { foo: { bar: { foo: 'a', '0' : 'b' }}});
+        assert.deepStrictEqual( QS.parse('foo[][foo]=a&foo[][bar]=b&foo[][foo]=c&foo[][bar]=d'), { foo: [{ foo: 'a', bar: 'b' }, { foo: 'c', bar: 'd' }]});
     });
 
     it('should parse objects', function()
