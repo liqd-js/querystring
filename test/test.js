@@ -72,6 +72,11 @@ describe( 'Tests', ( done ) =>
         assert.deepStrictEqual( QS.parse('foo+bar=+'), { 'foo bar': ' ' });
     });
 
+    it('should parse typed values', function()
+	{
+        assert.deepStrictEqual( QS.parse('foo[]=1&foo[]=-1.5&foo[]=true&foo[]=false&foo[]=undefined&foo[]=null&foo[]=bar', { types: [ 'null', 'undefined', 'boolean', 'number' ]}), { 'foo': [ 1, -1.5, true, false, undefined, null, 'bar' ]});
+    });
+
     it('should stringify query', function()
 	{
         let querystring = QS.stringify({ bar: true, foo: { foo: false, bar: 'foobar' }, arr: [ 'foo', { foo: 'bar' }, null, 321, undefined, 123.45, undefined ]});
